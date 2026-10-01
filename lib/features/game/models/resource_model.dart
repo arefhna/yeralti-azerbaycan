@@ -1,25 +1,9 @@
-import 'package:hive/hive.dart';
-
-part 'resource_model.g.dart';
-
-@HiveType(typeId: 0)
-class ResourceModel extends HiveObject {
-  @HiveField(0)
+class ResourceModel {
   String id;
-
-  @HiveField(1)
   String name;
-
-  @HiveField(2)
   String emoji;
-
-  @HiveField(3)
   double amount;
-
-  @HiveField(4)
   double totalMined;
-
-  @HiveField(5)
   int layerIndex;
 
   ResourceModel({
@@ -30,4 +14,22 @@ class ResourceModel extends HiveObject {
     this.totalMined = 0,
     required this.layerIndex,
   });
+
+  ResourceModel copyWith({
+    String? id,
+    String? name,
+    String? emoji,
+    double? amount,
+    double? totalMined,
+    int? layerIndex,
+  }) {
+    return ResourceModel(
+      id: id ?? this.id,
+      name: name ?? this.name,
+      emoji: emoji ?? this.emoji,
+      amount: amount ?? this.amount,
+      totalMined: totalMined ?? this.totalMined,
+      layerIndex: layerIndex ?? this.layerIndex,
+    );
+  }
 }
