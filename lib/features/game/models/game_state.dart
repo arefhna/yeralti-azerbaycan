@@ -1,51 +1,21 @@
-import 'package:hive/hive.dart';
-
 import 'resource_model.dart';
 import 'layer_model.dart';
 import 'worker_model.dart';
 import 'tool_model.dart';
 
-part 'game_state.g.dart';
-
-@HiveType(typeId: 4)
-class GameState extends HiveObject {
-  @HiveField(0)
+class GameState {
   int currentLayerIndex;
-
-  @HiveField(1)
-  double qazinti; // əsas valyuta
-
-  @HiveField(2)
-  double mifQirintisi; // prestige valyutası
-
-  @HiveField(3)
+  double qazinti;
+  double mifQirintisi;
   int prestigeCount;
-
-  @HiveField(4)
   DateTime lastSaveTime;
-
-  @HiveField(5)
   DateTime firstPlayTime;
-
-  @HiveField(6)
   int totalClicks;
-
-  @HiveField(7)
   List<ResourceModel> resources;
-
-  @HiveField(8)
   List<LayerModel> layers;
-
-  @HiveField(9)
   List<WorkerModel> workers;
-
-  @HiveField(10)
   List<ToolModel> tools;
-
-  @HiveField(11)
   List<String> unlockedAchievements;
-
-  @HiveField(12)
   List<String> collectedArtifacts;
 
   GameState({
@@ -63,4 +33,36 @@ class GameState extends HiveObject {
     this.unlockedAchievements = const [],
     this.collectedArtifacts = const [],
   });
+
+  GameState copyWith({
+    int? currentLayerIndex,
+    double? qazinti,
+    double? mifQirintisi,
+    int? prestigeCount,
+    DateTime? lastSaveTime,
+    DateTime? firstPlayTime,
+    int? totalClicks,
+    List<ResourceModel>? resources,
+    List<LayerModel>? layers,
+    List<WorkerModel>? workers,
+    List<ToolModel>? tools,
+    List<String>? unlockedAchievements,
+    List<String>? collectedArtifacts,
+  }) {
+    return GameState(
+      currentLayerIndex: currentLayerIndex ?? this.currentLayerIndex,
+      qazinti: qazinti ?? this.qazinti,
+      mifQirintisi: mifQirintisi ?? this.mifQirintisi,
+      prestigeCount: prestigeCount ?? this.prestigeCount,
+      lastSaveTime: lastSaveTime ?? this.lastSaveTime,
+      firstPlayTime: firstPlayTime ?? this.firstPlayTime,
+      totalClicks: totalClicks ?? this.totalClicks,
+      resources: resources ?? this.resources,
+      layers: layers ?? this.layers,
+      workers: workers ?? this.workers,
+      tools: tools ?? this.tools,
+      unlockedAchievements: unlockedAchievements ?? this.unlockedAchievements,
+      collectedArtifacts: collectedArtifacts ?? this.collectedArtifacts,
+    );
+  }
 }
