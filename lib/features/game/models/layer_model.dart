@@ -1,38 +1,13 @@
-import 'package:hive/hive.dart';
-
-part 'layer_model.g.dart';
-
-@HiveType(typeId: 1)
-class LayerModel extends HiveObject {
-  @HiveField(0)
+class LayerModel {
   int index;
-
-  @HiveField(1)
   String name;
-
-  @HiveField(2)
   String emoji;
-
-  @HiveField(3)
   bool unlocked;
-
-  @HiveField(4)
   int bossHp;
-
-  @HiveField(5)
   int bossMaxHp;
-
-  @HiveField(6)
   bool bossDefeated;
-
-  @HiveField(7)
   String bossEmoji;
-
-  @HiveField(8)
   String bossName;
-
-  /// Boss üçün lazım olan alət id-si (məsələn, 'silver_pickaxe')
-  @HiveField(9)
   String bossWeaknessToolId;
 
   LayerModel({
@@ -47,4 +22,30 @@ class LayerModel extends HiveObject {
     required this.bossName,
     required this.bossWeaknessToolId,
   });
+
+  LayerModel copyWith({
+    int? index,
+    String? name,
+    String? emoji,
+    bool? unlocked,
+    int? bossHp,
+    int? bossMaxHp,
+    bool? bossDefeated,
+    String? bossEmoji,
+    String? bossName,
+    String? bossWeaknessToolId,
+  }) {
+    return LayerModel(
+      index: index ?? this.index,
+      name: name ?? this.name,
+      emoji: emoji ?? this.emoji,
+      unlocked: unlocked ?? this.unlocked,
+      bossHp: bossHp ?? this.bossHp,
+      bossMaxHp: bossMaxHp ?? this.bossMaxHp,
+      bossDefeated: bossDefeated ?? this.bossDefeated,
+      bossEmoji: bossEmoji ?? this.bossEmoji,
+      bossName: bossName ?? this.bossName,
+      bossWeaknessToolId: bossWeaknessToolId ?? this.bossWeaknessToolId,
+    );
+  }
 }
