@@ -4,6 +4,7 @@ import 'package:hive_flutter/hive_flutter.dart';
 
 import 'app.dart';
 import 'features/game/data/hive_adapters.dart';
+import 'features/game/models/game_state.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
