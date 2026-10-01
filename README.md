@@ -51,7 +51,7 @@
 ## 📦 Quraşdırma
 
 ```bash
-git clone https://github.com/<istifadəçi>/yeralti-azerbaycan.git
+git clone https://github.com/arefhna/yeralti-azerbaycan.git
 cd yeralti-azerbaycan
 flutter pub get
 flutter run
