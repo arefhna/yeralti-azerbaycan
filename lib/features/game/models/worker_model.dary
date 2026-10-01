@@ -1,0 +1,51 @@
+import 'package:hive/hive.dart';
+
+part 'worker_model.g.dart';
+
+@HiveType(typeId: 2)
+class WorkerModel extends HiveObject {
+  @HiveField(0)
+  String id;
+
+  @HiveField(1)
+  String name;
+
+  @HiveField(2)
+  String emoji;
+
+  @HiveField(3)
+  int count;
+
+  @HiveField(4)
+  double baseProduction; // saniyədə
+
+  @HiveField(5)
+  double baseCost;
+
+  @HiveField(6)
+  int layerIndex; // hansı qatda işləyir
+
+  WorkerModel({
+    required this.id,
+    required this.name,
+    required this.emoji,
+    this.count = 0,
+    required this.baseProduction,
+    required this.baseCost,
+    required this.layerIndex,
+  });
+
+  /// Növbəti işçinin qiyməti (1.15x artım)
+  double get nextCost => baseCost * _pow(1.15, count);
+
+  /// Ümumi istehsal
+  double get totalProduction => baseProduction * count;
+
+  double _pow(double base, int exp) {
+    double result = 1;
+    for (int i = 0; i < exp; i++) {
+      result *= base;
+    }
+    return result;
+  }
+}
