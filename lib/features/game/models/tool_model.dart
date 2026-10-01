@@ -1,32 +1,11 @@
-import 'package:hive/hive.dart';
-
-part 'tool_model.g.dart';
-
-@HiveType(typeId: 3)
-class ToolModel extends HiveObject {
-  @HiveField(0)
+class ToolModel {
   String id;
-
-  @HiveField(1)
   String name;
-
-  @HiveField(2)
   String emoji;
-
-  @HiveField(3)
   bool owned;
-
-  @HiveField(4)
   int level;
-
-  @HiveField(5)
-  double basePower; // klik başına zərbə
-
-  @HiveField(6)
+  double basePower;
   double baseCost;
-
-  /// Hansı qat/boss üçün bonus verir (boş = hamı üçün)
-  @HiveField(7)
   String? specialForLayer;
 
   ToolModel({
@@ -40,11 +19,30 @@ class ToolModel extends HiveObject {
     this.specialForLayer,
   });
 
-  /// Cari güc (hər level +20%)
   double get currentPower => basePower * (1 + 0.2 * level);
-
-  /// Təkmilləşdirmə qiyməti
   double get upgradeCost => baseCost * _pow(1.5, level + 1);
+
+  ToolModel copyWith({
+    String? id,
+    String? name,
+    String? emoji,
+    bool? owned,
+    int? level,
+    double? basePower,
+    double? baseCost,
+    String? specialForLayer,
+  }) {
+    return ToolModel(
+      id: id ?? this.id,
+      name: name ?? this.name,
+      emoji: emoji ?? this.emoji,
+      owned: owned ?? this.owned,
+      level: level ?? this.level,
+      basePower: basePower ?? this.basePower,
+      baseCost: baseCost ?? this.baseCost,
+      specialForLayer: specialForLayer ?? this.specialForLayer,
+    );
+  }
 
   double _pow(double base, int exp) {
     double result = 1;
